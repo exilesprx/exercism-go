@@ -14,8 +14,7 @@ jobs:
       - name: Test exercises
         run: |
           set -e
-          EXIT_CODE=0
           for dir in $(find . -name go.mod -execdir pwd \;); do
-              (cd "$dir" && go test ./... | tee /dev/stderr) || EXIT_CODE=1
+            cd "$dir"
+            go test ./...
           done
-          exit $EXIT_CODE
