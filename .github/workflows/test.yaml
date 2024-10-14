@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Test exercises
         run: find . -name go.mod -execdir sh -c 'go test ./... | tee /dev/stderr | grep -q FAIL && exit 1' \;
