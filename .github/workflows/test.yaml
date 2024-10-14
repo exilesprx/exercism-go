@@ -15,5 +15,5 @@ jobs:
         run: |
           set -e
           EXIT_CODE=0
-          find . -name go.mod -execdir sh -c 'go test ./... | tee /dev/stderr | grep -q FAIL; [ $? -ne 0]' \;
+          find . -name go.mod -execdir sh -c 'go test ./... | tee /dev/stderr | grep -zqv FAIL; [ $? -ne 0]' \;
           exit $EXIT_CODE
