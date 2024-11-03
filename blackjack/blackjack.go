@@ -34,18 +34,20 @@ func FirstTurn(card1, card2, dealerCard string) string {
 	playerSum := ParseCard(card1) + ParseCard(card2)
 	dealerValue := ParseCard(dealerCard)
 
-	if playerSum == 22 {
+	switch {
+	case playerSum == 22:
 		return "P"
-	} else if playerSum == 21 && dealerValue != 11 && dealerValue != 10 {
+	case playerSum == 21 && dealerValue != 11 && dealerValue != 10:
 		return "W"
-	} else if (playerSum == 21 && dealerValue == 11) || (playerSum == 21 && dealerValue == 10) {
+	case playerSum == 21 && dealerValue == 11 || playerSum == 21 && dealerValue == 10:
 		return "S"
-	} else if playerSum >= 17 && playerSum <= 20 {
+	case playerSum >= 17 && playerSum <= 20:
 		return "S"
-	} else if playerSum >= 12 && playerSum <= 16 && dealerValue >= 7 {
+	case playerSum >= 12 && playerSum <= 16 && dealerValue >= 7:
 		return "H"
-	} else if playerSum >= 12 && playerSum <= 16 && dealerValue < 7 {
+	case playerSum >= 12 && playerSum <= 16 && dealerValue < 7:
 		return "S"
+	default:
+		return "H"
 	}
-	return "H"
 }
