@@ -52,10 +52,6 @@ func RemoveItem(bill, units map[string]int, item, unit string) bool {
 
 // GetItem returns the quantity of an item that the customer has in his/her bill.
 func GetItem(bill map[string]int, item string) (int, bool) {
-  value, exists := bill[item]
-  if !exists {
-    return 0, false
-  }
-
-  return value, true
+	value, exists := bill[item]
+	return value, exists
 }
