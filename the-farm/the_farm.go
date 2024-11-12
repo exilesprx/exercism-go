@@ -28,8 +28,8 @@ func ValidateInputAndDivideFood(cal FodderCalculator, cows int) (float64, error)
 }
 
 type InvalidCowsError struct {
-	cows    int
 	message string
+	cows    int
 }
 
 func (e *InvalidCowsError) Error() string {
