@@ -10,11 +10,14 @@ const (
 )
 
 func (tu TemperatureUnit) String() string {
-	if tu == Celsius {
+	switch tu {
+	case Celsius:
 		return "°C"
+	case Fahrenheit:
+		return "°F"
+	default:
+		return "Unknown"
 	}
-
-	return "°F"
 }
 
 type Temperature struct {
@@ -34,11 +37,14 @@ const (
 )
 
 func (su SpeedUnit) String() string {
-	if su == KmPerHour {
+	switch su {
+	case KmPerHour:
 		return "km/h"
+	case MilesPerHour:
+		return "mph"
+	default:
+		return "Unknown"
 	}
-
-	return "mph"
 }
 
 type Speed struct {
