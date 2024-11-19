@@ -1,5 +1,34 @@
 package luhn
 
+import (
+	"strconv"
+	"unicode/utf8"
+)
+
 func Valid(id string) bool {
-	panic("Please implement the Valid function")
+	sum := 0
+	digitCount := 0
+	for i := utf8.RuneCountInString(id) - 1; i >= 0; i-- {
+		if id[i] == ' ' {
+			continue
+		}
+
+		num, err := strconv.Atoi(string(id[i]))
+		if err != nil {
+			return false
+		}
+
+		if digitCount++; digitCount%2 != 0 {
+			sum += num
+			continue
+		}
+
+		if doubled := 2 * num; doubled > 9 {
+			sum += doubled - 9
+		} else {
+			sum += doubled
+		}
+	}
+
+	return digitCount > 1 && sum%10 == 0
 }
