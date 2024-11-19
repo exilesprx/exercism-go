@@ -23,11 +23,13 @@ func Valid(id string) bool {
 			continue
 		}
 
-		if doubled := 2 * num; doubled > 9 {
+		doubled := 2 * num
+		if doubled > 9 {
 			sum += doubled - 9
-		} else {
-			sum += doubled
+      continue
 		}
+
+		sum += doubled
 	}
 
 	return digitCount > 1 && sum%10 == 0
