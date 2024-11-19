@@ -1,13 +1,25 @@
 package diffsquares
 
+// SquareOfSum returns the square of the sum of the first n natural numbers
 func SquareOfSum(n int) int {
-	panic("Please implement the SquareOfSum function")
+	sum := 0
+	for i := 1; i <= n; i++ {
+		sum += i
+	}
+	return sum * sum
 }
 
+// SumOfSquares returns the sum of the squares of the first n natural numbers
 func SumOfSquares(n int) int {
-	panic("Please implement the SumOfSquares function")
+	sum := 0
+	for i := 1; i <= n; i++ {
+		sum += i * i
+	}
+
+	return sum
 }
 
+// Difference returns the difference between the square of the sum and the sum of the squares of the first n natural numbers
 func Difference(n int) int {
-	panic("Please implement the Difference function")
+	return SquareOfSum(n) - SumOfSquares(n)
 }
