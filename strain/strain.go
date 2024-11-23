@@ -1,7 +1,25 @@
 package strain
 
-// Implement the "Keep" and "Discard" function in this file.
+// Keep returns a new slice containing all elements that satisfy the predicate.
+func Keep[T any](list []T, predicate func(T) bool) []T {
+	nlist := []T{}
+	for _, t := range list {
+		if predicate(t) {
+			nlist = append(nlist, t)
+		}
+	}
 
-// You will need typed parameters (aka "Generics") to solve this exercise.
-// They are not part of the Exercism syllabus yet but you can learn about
-// them here: https://go.dev/tour/generics/1
+	return nlist
+}
+
+// Discard returns a new slice containing all elements that do not satisfy the predicate.
+func Discard[T any](list []T, predicate func(T) bool) []T {
+	nlist := []T{}
+	for _, t := range list {
+		if !predicate(t) {
+			nlist = append(nlist, t)
+		}
+	}
+
+	return nlist
+}
