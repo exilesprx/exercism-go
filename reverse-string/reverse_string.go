@@ -1,5 +1,11 @@
 package reverse
 
 func Reverse(input string) string {
-	panic("Please implement the Reverse function")
+	reversed := ""
+	runes := []rune(input)
+	for i := len(runes) - 1; i >= 0; i-- {
+		reversed += string(runes[i])
+	}
+
+	return reversed
 }
