@@ -1,15 +1,30 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package bob should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Bob is a lackadaisical teenager. In conversation, his responses are very limited.
 package bob
 
-// Hey should have a comment documenting it.
+import (
+	"strings"
+	"unicode/utf8"
+)
+
+// Hey returns Bob's response to a remark.
 func Hey(remark string) string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return ""
+	phrase := strings.TrimSpace(remark)
+	if utf8.RuneCountInString(phrase) == 0 {
+		return "Fine. Be that way!"
+	}
+
+	isQuestion := phrase[utf8.RuneCountInString(phrase)-1] == '?'
+	isAllCaps := func(phrase string) bool {
+		return strings.ToUpper(phrase) == phrase && strings.ToLower(phrase) != phrase
+	}
+
+	if isYelling := isAllCaps(phrase); isQuestion && isYelling {
+		return "Calm down, I know what I'm doing!"
+	} else if isQuestion {
+		return "Sure."
+	} else if isYelling {
+		return "Whoa, chill out!"
+	}
+
+	return "Whatever."
 }
