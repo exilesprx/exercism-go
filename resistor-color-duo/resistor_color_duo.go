@@ -1,6 +1,6 @@
 package resistorcolorduo
 
-var colorCode = map[string]int{
+var resistance = map[string]int{
 	"black":  0,
 	"brown":  1,
 	"red":    2,
@@ -15,5 +15,5 @@ var colorCode = map[string]int{
 
 // Value should return the resistance value of a resistor with a given colors.
 func Value(colors []string) int {
-	return colorCode[colors[0]]*10 + colorCode[colors[1]]
+	return resistance[colors[0]]*10 + resistance[colors[1]]
 }
