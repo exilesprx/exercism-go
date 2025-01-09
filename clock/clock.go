@@ -11,11 +11,11 @@ func New(h, m int) Clock {
 }
 
 func (c Clock) Add(m int) Clock {
-	return Clock{minutes: (c.minutes + m%1440 + 1440) % 1440}
+	return New(0, c.minutes+m)
 }
 
 func (c Clock) Subtract(m int) Clock {
-	return Clock{minutes: (c.minutes - m%1440 + 1440) % 1440}
+	return New(0, c.minutes-m)
 }
 
 func (c Clock) String() string {
