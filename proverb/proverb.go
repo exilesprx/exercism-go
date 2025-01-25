@@ -1,15 +1,18 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package proverb should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package proverb implements a simple library that generates a proverbial rhyme based on the input slice of strings
 package proverb
 
-// Proverb should have a comment documenting it.
+import "fmt"
+
+// Proverb returns the proverbial rhyme based on the input slice of strings
 func Proverb(rhyme []string) []string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	panic("Please implement the Proverb function")
+	if len(rhyme) == 0 {
+		return nil
+	}
+
+	var output []string
+	for i := 0; i < len(rhyme)-1; i++ {
+		output = append(output, fmt.Sprintf("For want of a %s the %s was lost.", rhyme[i], rhyme[i+1]))
+	}
+	output = append(output, fmt.Sprintf("And all for the want of a %s.", rhyme[0]))
+	return output
 }
