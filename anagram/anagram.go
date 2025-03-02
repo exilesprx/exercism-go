@@ -1,8 +1,8 @@
 package anagram
 
 import (
+	"sort"
 	"strings"
-	"unicode"
 	"unicode/utf8"
 )
 
@@ -13,25 +13,15 @@ func Detect(subject string, candidates []string) []string {
 			continue
 		}
 
-		letters := map[rune]int{}
-		matches := map[rune]int{}
-		for _, letter := range subject {
-			letters[unicode.ToLower(letter)]++
-		}
-
-		isAnagram := true
-		for _, letter := range candidate {
-			if value, ok := letters[unicode.ToLower(letter)]; !ok || value == matches[unicode.ToLower(letter)] {
-				isAnagram = false
-				break
-			}
-
-			matches[unicode.ToLower(letter)]++
-		}
-
-		if isAnagram {
+		if sortString(strings.ToLower(candidate)) == sortString(strings.ToLower(subject)) {
 			anagrams = append(anagrams, candidate)
 		}
 	}
 	return anagrams
+}
+
+func sortString(s string) string {
+	split := strings.Split(s, "")
+	sort.Strings(split)
+	return strings.Join(split, "")
 }
