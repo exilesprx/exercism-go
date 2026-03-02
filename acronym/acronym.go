@@ -1,15 +1,18 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
 // Package acronym should have a package comment that summarizes what it's about.
 // https://golang.org/doc/effective_go.html#commentary
 package acronym
 
-// Abbreviate should have a comment documenting it.
+import (
+	"regexp"
+	"strings"
+)
+
+// Abbreviate takes a string and returns its acronym. An acronym is formed by taking the first letter of each word in the string, converting it to uppercase, and concatenating them together. Words are defined as sequences of characters separated by whitespace or hyphens. Additionally, any leading or trailing underscores in words should be ignored when forming the acronym.
 func Abbreviate(s string) string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return ""
+	var acronym strings.Builder
+	parts := regexp.MustCompile(`[ \-_]+`).Split(s, -1)
+	for _, word := range parts {
+		acronym.WriteString(strings.ToUpper(string(word[0])))
+	}
+	return acronym.String()
 }
