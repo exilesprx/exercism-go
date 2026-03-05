@@ -1,43 +1,72 @@
+// Package complexnumbers implements a simple complex number type and associated methods.
 package complexnumbers
 
-// Define the Number type here.
+import "math"
+
+type Number struct {
+	a float64
+	b float64
+}
 
 func (n Number) Real() float64 {
-	panic("Please implement the Real method")
+	return n.a
 }
 
 func (n Number) Imaginary() float64 {
-	panic("Please implement the Imaginary method")
+	return n.b
 }
 
 func (n1 Number) Add(n2 Number) Number {
-	panic("Please implement the Add method")
+	return Number{
+		a: n1.Real() + n2.Real(),
+		b: n1.Imaginary() + n2.Imaginary(),
+	}
 }
 
 func (n1 Number) Subtract(n2 Number) Number {
-	panic("Please implement the Subtract method")
+	return Number{
+		a: n1.Real() - n2.Real(),
+		b: n1.Imaginary() - n2.Imaginary(),
+	}
 }
 
 func (n1 Number) Multiply(n2 Number) Number {
-	panic("Please implement the Multiply method")
+	return Number{
+		a: (n1.Real() * n2.Real()) - (n1.Imaginary() * n2.Imaginary()),
+		b: (n1.Imaginary() * n2.Real()) + (n1.Real() * n2.Imaginary()),
+	}
 }
 
 func (n Number) Times(factor float64) Number {
-	panic("Please implement the Times method")
+	return Number{
+		a: n.Real() * factor,
+		b: n.Imaginary() * factor,
+	}
 }
 
 func (n1 Number) Divide(n2 Number) Number {
-	panic("Please implement the Divide method")
+	factor := n2.Real()*n2.Real() + n2.Imaginary()*n2.Imaginary()
+	return Number{
+		a: (n1.Real()*n2.Real() + n1.Imaginary()*n2.Imaginary()) / factor,
+		b: (n1.Imaginary()*n2.Real() - n1.Real()*n2.Imaginary()) / factor,
+	}
 }
 
 func (n Number) Conjugate() Number {
-	panic("Please implement the Conjugate method")
+	return Number{
+		a: n.Real(),
+		b: n.Imaginary() * -1.0,
+	}
 }
 
 func (n Number) Abs() float64 {
-	panic("Please implement the Abs method")
+	return math.Sqrt((n.Real() * n.Real()) + (n.Imaginary() * n.Imaginary()))
 }
 
 func (n Number) Exp() Number {
-	panic("Please implement the Exp method")
+	factor := math.Exp(n.Real())
+	return Number{
+		a: factor * math.Cos(n.Imaginary()),
+		b: factor * math.Sin(n.Imaginary()),
+	}
 }
