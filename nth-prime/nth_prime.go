@@ -27,21 +27,14 @@ func isPrime(n int) bool {
 	if n == 2 || n == 3 {
 		return true
 	}
-
 	if n%2 == 0 || n%3 == 0 {
 		return false
 	}
 
-	for i := 5; i <= int(math.Sqrt(float64(n))); i++ {
-		// only check odds
-		if i%2 == 0 {
-			continue
-		}
-		// if current odd or the next odd step
+	for i := 5; i <= int(math.Sqrt(float64(n))); i += 6 {
 		if n%i == 0 || n%(i+2) == 0 {
 			return false
 		}
-		i += 3 // next odd step
 	}
 
 	return true
